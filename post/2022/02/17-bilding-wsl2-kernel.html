@@ -1,0 +1,110 @@
+<head>
+	<title>Building WSL2 Kernel | Blog - HeroBuxx</title>
+	<link rel="stylesheet" href="../../../css/main.css" />
+	<!-- Icon Lib -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+</head>
+  <div class="navlink">
+    <a href="../../../index.html"><span>Back</span></a>
+  </div>
+  <div class="content-card" id="page_body">
+  
+    <div id="post-info">
+      <h1>Building WSL2 Kernel</h1>
+      <span class="text-2">Posted on February 17, 2022</span> <br>
+      <span class="text-3">By HeroBuxx</span>
+    </div>
+  
+    <div class="spacer"></div>
+
+    <div id="post-body">
+      <span>
+        Microsoft WSL2 is just really helped us who can't fully switch to Linux Systems but still need to run Linux Program in the same time. The WSL2 itself runs Linux Kernel Natively on top of the NT Kernel used by Windows.
+
+        As it runs Linux Kernel Natively, i want to play with it a little bit. So, i tried to build the Linux Kernel for WSL2 with Clang Compiler. Let's just begin the steps.
+
+        <b>First</b>, you have to setup your building system. Here i am using Ubuntu 20.04 on the WSL2. You can seetup it with this command
+        <div class="codebox">
+          <code lan id="code01">
+              $ sudo apt update
+              $ sudo apt upgrade
+              $ sudo apt install build-essential git flex bison libssl-dev libelf-dev dwarves lld -y
+
+        </code>
+      </div>
+      
+      <b>Then</b>, you can clone the Kernel Source Code. You can clone it from Microsoft's Official GitHub Repository. Here, i used my own fork of the WSL2 Kernel from Microsoft's GitHub. It's already have the Latest Linux v5.10 merged and EROFS enabled.
+      <div class="codebox">
+        <code lan id="code02">
+            $ git clone https://github.com/herobuxx/lunatic_wsl2 kernel/WSL2
+
+        </code>
+      </div>
+
+      <b>Now</b>, we are going to clone our Customized Clang LLVM Compiler. You can skip this step if you want to use Ubuntu's GCC
+      <div class="codebox">
+        <code lan id="code03">
+            $ git clone https://gitlab.com/Herobuxx/lunatic-clang kernel/clang
+
+        </code>
+      </div>
+
+      You can edit the Kernel Confiig if you want to add something you need.
+      <div class="codebox">
+        <code lan id="code04">
+            $ cd kernel/WSL2
+            $ make menuconfig
+
+        </code>
+      </div>
+
+      Now we can just enter the kernel source directory. And, we can start the Kernel Compilation, To build the kernel using our Customized Clang LLVM Compiler, you can follow this commands
+      <div class="codebox">
+        <code lan id="code04">
+            $ make -j$(nproc --all) CC="/home/USERNAME/kernel/clang/bin/clang" KCONFIG_CONFIG="arch/x68/configs/wsl2_defconfig"
+
+        </code>
+      </div>
+
+      But, if you want to use Ubuntu's GCC, you can follow this commands
+      <div class="codebox">
+        <code lan id="code04">
+            $ make -j$(nproc --all) KCONFIG_CONFIG="arch/x68/configs/wsl2_defconfig"
+
+        </code>
+      </div>
+
+      Now, we can wait until the compilation process finished.
+
+      Once it's finished. You can copy the Kernel Image to where the WSL2 Kernel Image stored.
+      <div class="codebox">
+        <code lan id="code04">
+            $ rm /mnt/c/Windows/System32/lxss/tool/kernel
+            $ cp arch/x86/boot/bzImage /mnt/c/Windows/System32/lxss/tool/kernel
+
+        </code>
+      </div>
+
+      Aaaaaaand, yes we are done. Now we just have to restart our WSL2. You can stype following commands on the PowerShell
+      <div class="codebox">
+        <code lan id="code04">
+            wsl --shutdown
+
+        </code>
+      </div>
+
+      Now, you can reopen your WSL2 System and check the kernel infomration
+      <div class="codebox">
+        <code lan id="code04">
+            $ cat /proc/version
+
+        </code>
+      </div>
+
+    </span>
+  </div>  
+
+  </div>
+<body>
+</body>
