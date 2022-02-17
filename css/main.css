@@ -43,20 +43,18 @@ body {
 
 .codebox {
     border:0px solid;
-    border-radius: 25px;
+    border-radius: 12.5px;
     background-color:#37414f;
     width:92.5%;
-    overflow:auto;    
-    padding-top:10px;
-    padding-bottom:15px;
-    padding-right:25px;
-    padding-left:25px;
+    overflow:auto;
+    padding-right:15px;
+    padding-left:15px;
     margin-top: 10px;
 
 }
     
 .codebox code {
-    font-size:0.9em;
+    font-size:1.0em;
 }
 
 #post-body {
