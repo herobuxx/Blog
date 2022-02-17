@@ -8,6 +8,7 @@ body {
     color: white;
     min-height: 97vh;
     background: url(../img/background.webp) no-repeat center center fixed; 
+    background-color: #222933;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -44,7 +45,7 @@ body {
     border:0px solid;
     border-radius: 25px;
     background-color:#37414f;
-    width:100%;
+    width:92.5%;
     overflow:auto;    
     padding-top:10px;
     padding-bottom:15px;
@@ -82,4 +83,17 @@ body {
     font-weight: bold;
     font-size: 25px;
     color: white;
+}
+
+.navlink {
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    margin-top: 2%;
+    padding-right:25px;
+    padding-left:25px;
+}
+
+.navlink a{
+    color: white;
+    text-decoration: none;
 }
