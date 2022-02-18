@@ -81,13 +81,13 @@
       Once it's finished. You can copy the Kernel Image to where the WSL2 Kernel Image stored.
       <div class="codebox">
         <code lan id="code04">
-            $ rm /mnt/c/Windows/System32/lxss/tool/kernel
+            $ mv /mnt/c/Windows/System32/lxss/tool/kernel /mnt/c/Windows/System32/lxss/tool/kernel-bak
             $ cp arch/x86/boot/bzImage /mnt/c/Windows/System32/lxss/tool/kernel
 
         </code>
       </div>
 
-      Aaaaaaand, yes we are done. Now we just have to restart our WSL2. You can stype following commands on the PowerShell
+      Aaaaaaand, yes we are done. Now we just have to restart our WSL2. You can type following commands on the PowerShell
       <div class="codebox">
         <code lan id="code04">
             wsl --shutdown
@@ -95,13 +95,14 @@
         </code>
       </div>
 
-      Now, you can reopen your WSL2 System and check the kernel infomration
+      Now, you can reopen your WSL2 System and check the kernel information
       <div class="codebox">
         <code lan id="code04">
             $ cat /proc/version
 
         </code>
       </div>
+      Congrats! You already built WSL2 Linux Kernel by yourself! Should we try to rebuild kernel for WSA Next time?
 
     </span>
   </div>  
