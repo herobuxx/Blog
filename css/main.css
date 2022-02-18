@@ -84,14 +84,35 @@ body {
 }
 
 .navlink {
-    margin-left: 12.5%;
-    margin-right: 12.5%;
+    margin-left: 17.5%;
+    margin-right: 17.5%;
     margin-top: 2%;
-    padding-right:25px;
-    padding-left:25px;
 }
 
 .navlink a{
     color: white;
     text-decoration: none;
+}
+
+@media all and (max-width: 1000px) {
+    .content-card {
+        background-color: #222933;
+        border-radius: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        color: #FFFFFF;
+    }
+    .navlink {
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 2%;
+        padding-right:25px;
+        padding-left:25px;
+    }
 }
